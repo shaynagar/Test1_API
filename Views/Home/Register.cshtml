@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+<div ng-app="Test1App" ng-controller="RegisterController">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!--Form-------------------->
+                <form name="registerForm" ng-submit="submitForm(User)" novalidate>
+                    <!--UserName-->
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.username.$invalid && !registerForm.username.$pristine }">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" ng-model="User.username" ng-minlength="6" ng-maxlength="16" required>
+                        <p ng-show="registerForm.username.$error.minlength" class="help-block">Username must have at least 6 characters.</p>
+                        <p ng-show="registerForm.username.$error.maxlength" class="help-block">Username must have maximum 16 characters.</p>
+                    </div>
+                    <!--Password-->
+                    <div class="form-group" ng-class="{ 'has-error' : registerForm.password.$invalid && !registerForm.password.$pristine }">
+                        <label>Password</label>
+                        <input type="text" name="password" class="form-control" ng-model="User.password" ng-minlength="6" ng-maxlength="16" ng-pattern="/(?=.*[A-Z])[a-zA-Z0-9]/" required>
+                        <p ng-show="registerForm.password.$error.minlength" class="help-block">Password must have at least 6 characters.</p>
+                        <p ng-show="registerForm.password.$error.maxlength" class="help-block">Password must have maximum 16 characters.</p>
+                        <p ng-show="registerForm.password.$error.pattern" class="help-block">Password must have at least 1 capital letter.</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-disabled="registerForm.$invalid || registerForm.username.$error.required || registerForm.password.$error.required">{{submitText}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

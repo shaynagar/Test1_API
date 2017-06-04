@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<div ng-app="Test1App" ng-controller="LoginController">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!--FORM------------------------------------>
+                <form name="loginForm" ng-submit="login(UserData)" novalidate>
+                    <!--username-->
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" ng-model="UserData.username" required autofocus/>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="text" class="form-control" ng-model="UserData.password" required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid || loginForm.username.$error.required || loginForm.password.$error.required">{{submitText}}</button>
+                    <p name="helpMessage" class="help-block" ng-show="showHelpMessage">{{message}}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
